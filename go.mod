@@ -1,4 +1,4 @@
-module github.com/anurag925/core
+module github.com/anurag925/expresso-core
 
 go 1.19
 
