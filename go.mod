@@ -1,4 +1,4 @@
-module core
+module github.com/anurag925/core
 
 go 1.19
 

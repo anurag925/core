@@ -1,4 +1,4 @@
-package initializers
+package core
 
 import (
 	"encoding/json"
