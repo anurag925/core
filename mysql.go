@@ -7,6 +7,7 @@ import (
 )
 
 type DB interface {
+	Instance() *sql.DB
 	Connect() error
 	Disconnect() error
 }
@@ -20,6 +21,10 @@ var _ DB = (*MySQL)(nil)
 
 func NewMySQL(db *sql.DB) *MySQL {
 	return &MySQL{db}
+}
+
+func (m *MySQL) Instance() *sql.DB {
+	return m.db
 }
 
 func (m *MySQL) Connect() error {
