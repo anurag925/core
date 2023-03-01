@@ -49,6 +49,7 @@ type (
 	}
 )
 
+// Creates a custom client and server with options and config
 func NewClientAndServer(conn asynq.RedisClientOpt, cfg asynq.Config, opts *asynq.SchedulerOpts) *TaskClient {
 	return &TaskClient{
 		client:    asynq.NewClient(conn),
