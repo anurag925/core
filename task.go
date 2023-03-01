@@ -49,6 +49,16 @@ type (
 	}
 )
 
+func NewClientAndServer(conn asynq.RedisClientOpt, cfg asynq.Config, opts *asynq.SchedulerOpts) *TaskClient {
+	return &TaskClient{
+		client:    asynq.NewClient(conn),
+		scheduler: asynq.NewScheduler(conn, opts),
+		server:    asynq.NewServer(conn, cfg),
+		mux:       asynq.NewServeMux(),
+	}
+
+}
+
 // NewTaskClient creates a new task client
 func NewTaskClient(conn asynq.RedisClientOpt) *TaskClient {
 	return &TaskClient{
