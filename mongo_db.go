@@ -11,7 +11,7 @@ import (
 type Mongo interface {
 	DB() *mongoboiler.DB
 	Connect(dbName string) (*mongoboiler.DB, error)
-	Disconnect() error
+	Disconnect(context.Context) error
 }
 
 // db := os.Getenv("MONGO_DB_NAME")
@@ -41,10 +41,10 @@ func (m *MongoDB) Connect(dbName string) (*mongoboiler.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	m.db = mongoboiler.New(client, dbName, m.ctx)
+	m.db = mongoboiler.New(client, dbName)
 	return m.db, nil
 }
 
-func (m *MongoDB) Disconnect() error {
-	return m.db.Disconnect()
+func (m *MongoDB) Disconnect(ctx context.Context) error {
+	return m.db.Disconnect(ctx)
 }
